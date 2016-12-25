@@ -1,0 +1,13 @@
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\HostWcfService.dll.config
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\HostWcfService.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\HostWcfService.pdb
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\NorthwindServiceLibrary.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\NorthwindModel.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\EntityFramework.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\NorthwindServiceLibrary.pdb
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\NorthwindModel.pdb
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\EntityFramework.xml
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\bin\ru\EntityFramework.resources.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\obj\Debug\IISHostWcfService.csprojResolveAssemblyReference.cache
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\obj\Debug\HostWcfService.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\HostWcfService\obj\Debug\HostWcfService.pdb

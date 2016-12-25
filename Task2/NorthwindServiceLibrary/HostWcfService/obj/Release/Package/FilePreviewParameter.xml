@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Northwind" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Work\\WCF\\Task2\\NorthwindServiceLibrary\\HostWcfService\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\Work\\WCF\\Task2\\NorthwindServiceLibrary\\HostWcfService\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Northwind-Web.config Connection String" description="" value="data source=HOME-D;initial catalog=Northwind;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\Work\\WCF\\Task2\\NorthwindServiceLibrary\\HostWcfService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Northwind']/@connectionString" />
+  </parameter>
+</parameters>

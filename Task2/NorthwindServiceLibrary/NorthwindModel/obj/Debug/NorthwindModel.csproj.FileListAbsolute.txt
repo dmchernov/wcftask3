@@ -1,0 +1,11 @@
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Debug\NorthwindModel.dll.config
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Debug\NorthwindModel.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Debug\NorthwindModel.pdb
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Debug\EntityFramework.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Debug\EntityFramework.xml
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Debug\ru\EntityFramework.resources.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\obj\Debug\NorthwindModel.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\obj\Debug\NorthwindModel.pdb

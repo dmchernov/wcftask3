@@ -1,0 +1,12 @@
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Release\NorthwindModel.dll.config
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Release\NorthwindModel.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Release\NorthwindModel.pdb
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Release\EntityFramework.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Release\EntityFramework.SqlServer.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Release\EntityFramework.xml
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Release\EntityFramework.SqlServer.xml
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Release\ru\EntityFramework.resources.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\bin\Release\ru\EntityFramework.SqlServer.resources.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\obj\Release\NorthwindModel.csprojResolveAssemblyReference.cache
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\obj\Release\NorthwindModel.dll
+D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindModel\obj\Release\NorthwindModel.pdb

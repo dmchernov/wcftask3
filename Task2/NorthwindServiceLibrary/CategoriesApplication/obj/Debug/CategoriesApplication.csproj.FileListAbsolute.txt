@@ -1,0 +1,9 @@
+D:\Work\WCF\Task2\NorthwindServiceLibrary\CategoriesApplication\bin\Debug\CategoriesApplication.exe.config
+D:\Work\WCF\Task2\NorthwindServiceLibrary\CategoriesApplication\bin\Debug\CategoriesApplication.exe
+D:\Work\WCF\Task2\NorthwindServiceLibrary\CategoriesApplication\bin\Debug\CategoriesApplication.pdb
+D:\Work\WCF\Task2\NorthwindServiceLibrary\CategoriesApplication\obj\Debug\CategoriesApplication.Properties.Resources.resources
+D:\Work\WCF\Task2\NorthwindServiceLibrary\CategoriesApplication\obj\Debug\CategoriesApplication.csproj.GenerateResource.Cache
+D:\Work\WCF\Task2\NorthwindServiceLibrary\CategoriesApplication\obj\Debug\CategoriesApplication.exe
+D:\Work\WCF\Task2\NorthwindServiceLibrary\CategoriesApplication\obj\Debug\CategoriesApplication.pdb
+D:\Work\WCF\Task2\NorthwindServiceLibrary\CategoriesApplication\obj\Debug\CategoriesApplication.CategoriesForm.resources
+D:\Work\WCF\Task2\NorthwindServiceLibrary\CategoriesApplication\obj\Debug\CategoriesApplication.csprojResolveAssemblyReference.cache

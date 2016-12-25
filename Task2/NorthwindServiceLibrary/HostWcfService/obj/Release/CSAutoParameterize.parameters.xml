@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Northwind-Web.config Connection String" description="Northwind Строка подключения в web.config, используемая приложением для доступа к базе данных." defaultValue="data source=.;initial catalog=Northwind;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Work\\WCF\\Task2\\NorthwindServiceLibrary\\HostWcfService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Northwind']/@connectionString" />
+  </parameter>
+</parameters>

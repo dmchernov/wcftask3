@@ -6,3 +6,11 @@ D:\Work\WCF\Task2\NorthwindServiceLibrary\CallBackClient\obj\Debug\CallBackClien
 D:\Work\WCF\Task2\NorthwindServiceLibrary\CallBackClient\obj\Debug\CallBackClient.exe
 D:\Work\WCF\Task2\NorthwindServiceLibrary\CallBackClient\obj\Debug\CallBackClient.pdb
 D:\Work\WCF\Task2\NorthwindServiceLibrary\CallBackClient\obj\Debug\CallBackClient.SubscribeForm.resources
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\CallBackClient\bin\Debug\CallBackClient.exe.config
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\CallBackClient\bin\Debug\CallBackClient.exe
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\CallBackClient\bin\Debug\CallBackClient.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\CallBackClient\obj\Debug\CallBackClient.SubscribeForm.resources
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\CallBackClient\obj\Debug\CallBackClient.Properties.Resources.resources
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\CallBackClient\obj\Debug\CallBackClient.csproj.GenerateResource.Cache
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\CallBackClient\obj\Debug\CallBackClient.exe
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\CallBackClient\obj\Debug\CallBackClient.pdb

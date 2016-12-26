@@ -7,3 +7,10 @@ D:\Work\WCF\Task2\NorthwindServiceLibrary\TestProject\bin\Debug\nunit.framework.
 D:\Work\WCF\Task2\NorthwindServiceLibrary\TestProject\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
 D:\Work\WCF\Task2\NorthwindServiceLibrary\TestProject\obj\Debug\TestProject.dll
 D:\Work\WCF\Task2\NorthwindServiceLibrary\TestProject\obj\Debug\TestProject.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\TestProject\bin\Debug\TestProject.dll.config
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\TestProject\bin\Debug\TestProject.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\TestProject\bin\Debug\TestProject.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\TestProject\bin\Debug\nunit.framework.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\TestProject\bin\Debug\nunit.framework.xml
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\TestProject\obj\Debug\TestProject.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\TestProject\obj\Debug\TestProject.pdb

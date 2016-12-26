@@ -3,6 +3,7 @@ using System.Linq;
 using System.ServiceModel;
 using TestProject.OrderService;
 using TestProject.ProductService;
+using Product = TestProject.ProductService.Product;
 
 namespace TestProject.Common
 {
@@ -10,8 +11,7 @@ namespace TestProject.Common
 	{
 		public Order AddOrder ()
 		{
-			var service = new OrderServiceClient(new InstanceContext(this));
-
+			
 			var order = new Order()
 			{
 				Customer = new Customer() { CompanyName = "Test", ContactName = "Contact", CustomerID = new Random().Next(1, 99999).ToString(), ContactTitle = "Title" },
@@ -22,8 +22,11 @@ namespace TestProject.Common
 				ShipCountry = "Country"
 			};
 
-			var productService = new ProductServiceClient();
-			var products = productService.GetAllProducts();
+			Product[] products;
+			using (var productService = new ProductServiceClient())
+			{
+				products = productService.GetAllProducts();
+			}
 
 			Order_Detail[] details =
 			{
@@ -33,7 +36,10 @@ namespace TestProject.Common
 
 			order.Order_Details = details;
 
-			return service.Add(order);
+			using (var service = new OrderServiceClient(new InstanceContext(this)))
+			{
+				return service.Add(order);
+			}
 		}
 
 		public static void PrintFullOrderInfo(Order order)

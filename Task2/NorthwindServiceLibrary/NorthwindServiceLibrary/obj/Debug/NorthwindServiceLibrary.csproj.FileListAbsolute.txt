@@ -12,3 +12,17 @@ D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\ru\E
 D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\obj\Debug\NorthwindServiceLibrary.csprojResolveAssemblyReference.cache
 D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\obj\Debug\NorthwindServiceLibrary.dll
 D:\Work\WCF\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\obj\Debug\NorthwindServiceLibrary.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\NorthwindServiceLibrary.dll.config
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\NorthwindServiceLibrary.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\NorthwindServiceLibrary.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\EntityFramework.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\NorthwindModel.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\NorthwindModel.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\EntityFramework.xml
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\ru\EntityFramework.resources.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\bin\Debug\ru\EntityFramework.SqlServer.resources.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\obj\Debug\NorthwindServiceLibrary.csprojResolveAssemblyReference.cache
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\obj\Debug\NorthwindServiceLibrary.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindServiceLibrary\obj\Debug\NorthwindServiceLibrary.pdb

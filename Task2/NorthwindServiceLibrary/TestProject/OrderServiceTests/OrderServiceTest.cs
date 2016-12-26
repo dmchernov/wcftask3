@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using NUnit.Framework;
@@ -13,21 +14,24 @@ namespace TestProject.OrderServiceTests
 		[Test]
 		public void GetOrdersTest ()
 		{
-			var service = new OrderServiceClient(new InstanceContext(this));
-
-			foreach (var order in service.GetOrders())
+			using (var service = new OrderServiceClient(new InstanceContext(this)))
 			{
-				Console.WriteLine(order.OrderID);
+				foreach (var order in service.GetOrders())
+				{
+					Console.WriteLine(order.OrderID);
+				}
 			}
 		}
 
 		[Test]
 		public void GetOrderExTest ()
 		{
-			var service = new OrderServiceClient(new InstanceContext(this));
-
-			int orderId = service.GetOrders().First().OrderID;
-			var fullOrderData = service.GetOrderEx(orderId);
+			Order fullOrderData;
+			using (var service = new OrderServiceClient(new InstanceContext(this)))
+			{
+				int orderId = service.GetOrders().First().OrderID;
+				fullOrderData = service.GetOrderEx(orderId);
+			}
 			Assert.NotNull(fullOrderData);
 
 			OrdersHelper.PrintFullOrderInfo(fullOrderData);
@@ -58,38 +62,43 @@ namespace TestProject.OrderServiceTests
 		[Test]
 		public void ProcessOrderTest()
 		{
-			var service = new OrderServiceClient(new InstanceContext(this));
-			service.Subscribe();
+			using (var service = new OrderServiceClient(new InstanceContext(this)))
+			{
+				service.Subscribe();
+				var order = new OrdersHelper().AddOrder();
 
-			var order = new OrdersHelper().AddOrder();
+				var currentDateTime = DateTime.Now;
+				var processedOrder = service.SendOrderToProcess(order.OrderID, currentDateTime);
+				Assert.True(currentDateTime.ToString() == processedOrder.OrderDate.ToString());
+				service.UnSubscribe();
 
-			var currentDateTime = DateTime.Now;
-			var processedOrder = service.SendOrderToProcess(order.OrderID, currentDateTime);
-			Assert.True(currentDateTime.ToString() == processedOrder.OrderDate.ToString());
-
-			OrdersHelper.PrintFullOrderInfo(order);
-			OrdersHelper.PrintFullOrderInfo(processedOrder);
-			service.UnSubscribe();
+				OrdersHelper.PrintFullOrderInfo(order);
+				OrdersHelper.PrintFullOrderInfo(processedOrder);
+			}
 		}
 
 		[Test]
 		public void ShipOrderTest()
 		{
-			var service = new OrderServiceClient(new InstanceContext(this));
-			service.Subscribe();
+			Order order;
+			DateTime currentDateTime;
+			Order shippedOrder;
+			using (var service = new OrderServiceClient(new InstanceContext(this)))
+			{
+				order = new OrdersHelper().AddOrder();
 
-			var order = new OrdersHelper().AddOrder();
-			order = service.SendOrderToProcess(order.OrderID, DateTime.Now);
+				service.Subscribe();
+				order = service.SendOrderToProcess(order.OrderID, DateTime.Now);
+				service.UnSubscribe();
 
-			var currentDateTime = DateTime.Today.AddDays(7);
-			var shippedOrder = service.SendOrderToCustomer(order.OrderID, currentDateTime);
+				currentDateTime = DateTime.Today.AddDays(7);
+				shippedOrder = service.SendOrderToCustomer(order.OrderID, currentDateTime);
+			}
 			Assert.NotNull(shippedOrder.ShippedDate);
 			Assert.AreEqual(currentDateTime, shippedOrder.ShippedDate);
 
 			OrdersHelper.PrintFullOrderInfo(order);
 			OrdersHelper.PrintFullOrderInfo(shippedOrder);
-
-			service.UnSubscribe();
 		}
 
 		[Test]
@@ -98,7 +107,11 @@ namespace TestProject.OrderServiceTests
 			var order = new OrdersHelper().AddOrder();
 			OrdersHelper.PrintFullOrderInfo(order);
 
-			var products = new ProductServiceClient().GetAllProducts();
+			ProductService.Product[] products;
+			using (var productService = new ProductServiceClient())
+			{
+				products = productService.GetAllProducts();
+			}
 
 			order.ShipAddress = "New Ship Address";
 			order.Order_Details = new[]
@@ -108,7 +121,11 @@ namespace TestProject.OrderServiceTests
 				new Order_Detail() {Discount = 0, ProductID = products[products.Length -3 >= 0 ? products.Length -3 : 0].ProductID, Quantity = 300, UnitPrice = 1}, 
 			};
 
-			var updatedOrder = new OrderServiceClient(new InstanceContext(this)).UpdateOrder(order);
+			Order updatedOrder;
+			using (var service = new OrderServiceClient(new InstanceContext(this)))
+			{
+				updatedOrder = service.UpdateOrder(order);
+			}
 
 			Assert.AreEqual(updatedOrder.ShipAddress, "New Ship Address");
 			Assert.AreEqual(updatedOrder.Order_Details.Length, 3);
@@ -121,13 +138,12 @@ namespace TestProject.OrderServiceTests
 		{
 			var orderForDelete = new OrdersHelper().AddOrder();
 
-			var service = new OrderServiceClient(new InstanceContext(this));
-			service.DeleteOrder(orderForDelete.OrderID);
+			using (var service = new OrderServiceClient(new InstanceContext(this)))
+			{
+				service.DeleteOrder(orderForDelete.OrderID);
+			}
 		}
 
-		public void SendInformationMessage(string message)
-		{
-			Console.WriteLine(message);
-		}
+		public void SendInformationMessage(string message){}
 	}
 }

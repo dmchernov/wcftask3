@@ -24,3 +24,5 @@ D:\Work\wcftask3\Task2\NorthwindServiceLibrary\HostWcfService\bin\ru\EntityFrame
 D:\Work\wcftask3\Task2\NorthwindServiceLibrary\HostWcfService\obj\Debug\IISHostWcfService.csprojResolveAssemblyReference.cache
 D:\Work\wcftask3\Task2\NorthwindServiceLibrary\HostWcfService\obj\Debug\HostWcfService.dll
 D:\Work\wcftask3\Task2\NorthwindServiceLibrary\HostWcfService\obj\Debug\HostWcfService.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\HostWcfService\bin\NorthwindServiceFactories.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\HostWcfService\bin\NorthwindServiceFactories.pdb

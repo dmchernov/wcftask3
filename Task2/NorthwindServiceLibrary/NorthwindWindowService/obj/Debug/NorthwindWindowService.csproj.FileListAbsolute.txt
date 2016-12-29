@@ -1,0 +1,8 @@
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\NorthwindWindowService.exe.config
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\NorthwindWindowService.exe
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\NorthwindWindowService.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\Topshelf.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\Topshelf.xml
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\obj\Debug\NorthwindWindowService.exe
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\obj\Debug\NorthwindWindowService.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\obj\Debug\NorthwindWindowService.csprojResolveAssemblyReference.cache

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Description;
@@ -9,15 +8,10 @@ namespace NorthwindServiceFactories
 {
 	public class CategoryServiceHostFactory : ServiceHostFactory
 	{
-		public ServiceHost GetServiceHost(Uri[] baseAddresses)
-		{
-			return CreateServiceHost(typeof(ICategoryService), baseAddresses);
-		}
-
 		protected override ServiceHost CreateServiceHost (Type serviceType, Uri[] baseAddresses)
 		{
 			var host = base.CreateServiceHost(serviceType, baseAddresses);
-			var contract = ContractDescription.GetContract(typeof(ICategoryService));
+			/*var contract = ContractDescription.GetContract(typeof(ICategoryService));
 
 			var httpAddresses = baseAddresses.Where(a => a.Scheme == "http").ToList();
 			httpAddresses.ForEach(httpAddress =>
@@ -44,7 +38,8 @@ namespace NorthwindServiceFactories
 
 			serviceMetadataBehavior.HttpGetEnabled = true;
 
-			return host;
+			return host;*/
+			return ServiceHostHelper.ConfigureServiceHost(host, ContractDescription.GetContract(typeof(ICategoryService)), "categories.svc", true);
 		}
 	}
 }

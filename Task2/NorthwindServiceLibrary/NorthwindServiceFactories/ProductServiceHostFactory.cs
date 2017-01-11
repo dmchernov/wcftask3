@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Description;
@@ -9,31 +8,26 @@ namespace NorthwindServiceFactories
 {
 	public class ProductServiceHostFactory : ServiceHostFactory
 	{
-		public ServiceHost GetServiceHost(Uri[] baseAddresses)
-		{
-			return CreateServiceHost(typeof(IProductService), baseAddresses);
-		}
-
 		protected override ServiceHost CreateServiceHost (Type serviceType, Uri[] baseAddresses)
 		{
 			var host = base.CreateServiceHost(serviceType, baseAddresses);
-			var contract = ContractDescription.GetContract(typeof(IProductService));
+			/*var contract = ContractDescription.GetContract(typeof(IProductService));
 
-			var httpAddress = baseAddresses.FirstOrDefault(a => a.Scheme == "http");
-			if (httpAddress != null)
+			var httpAddresses = baseAddresses.Where(a => a.Scheme == "http").ToList();
+			httpAddresses.ForEach(httpAddress =>
 			{
 				var netHttpbinding = new NetHttpBinding {MaxReceivedMessageSize = Int32.MaxValue};
-				var netHttpendpoint = new ServiceEndpoint(contract, netHttpbinding, new EndpointAddress(httpAddress));
+				var netHttpendpoint = new ServiceEndpoint(contract, netHttpbinding, new EndpointAddress(new Uri(httpAddress, "products.svc")));
 				host.AddServiceEndpoint(netHttpendpoint);
-			}
+			});
 
-			var tcpAddress = baseAddresses.FirstOrDefault(a => a.Scheme == "net.tcp");
-			if (tcpAddress != null)
+			var tcpAddresses = baseAddresses.Where(a => a.Scheme == "net.tcp").ToList();
+			tcpAddresses.ForEach(tcpAddress =>
 			{
 				var netTcpBinding = new NetTcpBinding {MaxReceivedMessageSize = Int32.MaxValue};
-				var netTcpEndpoint = new ServiceEndpoint(contract, netTcpBinding, new EndpointAddress(tcpAddress));
+				var netTcpEndpoint = new ServiceEndpoint(contract, netTcpBinding, new EndpointAddress(new Uri(tcpAddress, "products.svc")));
 				host.AddServiceEndpoint(netTcpEndpoint);
-			}
+			});
 
 			var serviceMetadataBehavior = host.Description.Behaviors.Find<ServiceMetadataBehavior>();
 			if (serviceMetadataBehavior == null)
@@ -44,7 +38,8 @@ namespace NorthwindServiceFactories
 
 			serviceMetadataBehavior.HttpGetEnabled = true;
 
-			return host;
+			return host;*/
+			return ServiceHostHelper.ConfigureServiceHost(host, ContractDescription.GetContract(typeof(IProductService)), "products.svc");
 		}
 	}
 }

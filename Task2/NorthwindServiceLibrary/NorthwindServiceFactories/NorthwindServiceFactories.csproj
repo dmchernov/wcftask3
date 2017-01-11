@@ -46,6 +46,7 @@
     <Compile Include="OrderServiceHostFactory.cs" />
     <Compile Include="ProductServiceHostFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceHostHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NorthwindServiceLibrary\NorthwindServiceLibrary.csproj">

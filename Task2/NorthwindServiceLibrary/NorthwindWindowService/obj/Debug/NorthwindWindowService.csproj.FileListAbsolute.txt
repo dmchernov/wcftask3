@@ -6,3 +6,17 @@ D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\
 D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\obj\Debug\NorthwindWindowService.exe
 D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\obj\Debug\NorthwindWindowService.pdb
 D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\obj\Debug\NorthwindWindowService.csprojResolveAssemblyReference.cache
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\NorthwindServiceFactories.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\NorthwindServiceLibrary.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\NorthwindModel.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\EntityFramework.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\NorthwindServiceFactories.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\NorthwindServiceLibrary.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\NorthwindModel.pdb
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\EntityFramework.xml
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\ru\EntityFramework.resources.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\install.bat
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\uninstall.bat
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\wcftask3\Task2\NorthwindServiceLibrary\NorthwindWindowService\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

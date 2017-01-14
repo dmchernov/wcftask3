@@ -12,11 +12,11 @@ namespace TestProject.Common
 		public Order AddOrder ()
 		{
 			
-			var order = new Order()
+			var order = new Order
 			{
-				Customer = new Customer() { CompanyName = "Test", ContactName = "Contact", CustomerID = new Random().Next(1, 99999).ToString(), ContactTitle = "Title" },
-				Employee = new Employee() { FirstName = "FirstName", LastName = "EmpLastName" },
-				Shipper = new Shipper() { CompanyName = "Test Shipper", Phone = "123-456" },
+				Customer = new Customer { CompanyName = "Test", ContactName = "Contact", CustomerID = new Random().Next(1, 99999).ToString(), ContactTitle = "Title" },
+				Employee = new Employee { FirstName = "FirstName", LastName = "EmpLastName" },
+				Shipper = new Shipper { CompanyName = "Test Shipper", Phone = "123-456" },
 				ShipAddress = "Address",
 				ShipCity = "City",
 				ShipCountry = "Country"
@@ -30,8 +30,8 @@ namespace TestProject.Common
 
 			Order_Detail[] details =
 			{
-				new Order_Detail() {Discount = 0, Quantity = 5, UnitPrice = 10, ProductID = products[0].ProductID},
-				new Order_Detail() {Discount = 0, Quantity = 1, UnitPrice = 100, ProductID = products[1].ProductID},
+				new Order_Detail {Discount = 0, Quantity = 5, UnitPrice = 10, ProductID = products[0].ProductID},
+				new Order_Detail {Discount = 0, Quantity = 1, UnitPrice = 100, ProductID = products[1].ProductID}
 			};
 
 			order.Order_Details = details;
@@ -89,9 +89,14 @@ namespace TestProject.Common
 			}
 		}
 
-		public void SendInformationMessage(string message)
+		public void SendOrderNotification(OrderNotification notification)
 		{
-			Console.WriteLine(message);
+			throw new NotImplementedException();
+		}
+
+		public void SendServiceData(SubscriptionServiceData data)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

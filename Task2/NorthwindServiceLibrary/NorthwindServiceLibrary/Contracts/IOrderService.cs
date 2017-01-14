@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using NorthwindModel.Models;
 using NorthwindModel.Models.CustomModels;
-using NorthwindServiceLibrary.Faults;
+using NorthwindServiceLibrary.Faults.OrderFaults;
+using NorthwindServiceLibrary.Subscription;
 
 namespace NorthwindServiceLibrary.Contracts
 {
@@ -14,26 +15,31 @@ namespace NorthwindServiceLibrary.Contracts
 		IList<BasicOrder> GetOrders ();
 
 		[OperationContract]
-		[FaultContract(typeof(OrderFault))]
+		[FaultContract(typeof(OrderNotFound))]
 		Order GetOrderEx (int orderId);
 
 		[OperationContract]
 		Order Add (Order newOrder);
 
 		[OperationContract]
-		[FaultContract(typeof(OrderFault))]
+		[FaultContract(typeof(OrderNotFound))]
+		[FaultContract(typeof(OrderNotInRequiredStatuses))]
+		[FaultContract(typeof(InvalidOrderDate))]
 		Order SendOrderToProcess (int orderId, DateTime orderDate);
 
 		[OperationContract]
-		[FaultContract(typeof(OrderFault))]
+		[FaultContract(typeof(OrderNotFound))]
+		[FaultContract(typeof(OrderNotInRequiredStatuses))]
 		Order SendOrderToCustomer (int orderId, DateTime shippedDate);
 
 		[OperationContract]
-		[FaultContract(typeof(OrderFault))]
+		[FaultContract(typeof(OrderNotFound))]
+		[FaultContract(typeof(OrderNotInRequiredStatuses))]
 		Order UpdateOrder (Order orderForUpdate);
 
 		[OperationContract]
-		[FaultContract(typeof(OrderFault))]
+		[FaultContract(typeof(OrderNotFound))]
+		[FaultContract(typeof(OrderNotInRequiredStatuses))]
 		void DeleteOrder (int orderId);
 
 		[OperationContract(IsOneWay = true)]

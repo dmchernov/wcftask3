@@ -5,6 +5,7 @@ using NUnit.Framework;
 using TestProject.Common;
 using TestProject.OrderService;
 using TestProject.ProductService;
+using Product = TestProject.ProductService.Product;
 
 namespace TestProject.OrderServiceTests
 {
@@ -106,7 +107,7 @@ namespace TestProject.OrderServiceTests
 			var order = new OrdersHelper().AddOrder();
 			OrdersHelper.PrintFullOrderInfo(order);
 
-			ProductService.Product[] products;
+			Product[] products;
 			using (var productService = new ProductServiceClient())
 			{
 				products = productService.GetAllProducts();
@@ -115,9 +116,9 @@ namespace TestProject.OrderServiceTests
 			order.ShipAddress = "New Ship Address";
 			order.Order_Details = new[]
 			{
-				new Order_Detail() {Discount = 0, ProductID = products[products.Length -1 >= 0 ? products.Length -1 : 0].ProductID, Quantity = 100, UnitPrice = 3}, 
-				new Order_Detail() {Discount = 0, ProductID = products[products.Length -2 >= 0 ? products.Length -2 : 0].ProductID, Quantity = 200, UnitPrice = 2}, 
-				new Order_Detail() {Discount = 0, ProductID = products[products.Length -3 >= 0 ? products.Length -3 : 0].ProductID, Quantity = 300, UnitPrice = 1}, 
+				new Order_Detail {Discount = 0, ProductID = products[products.Length -1 >= 0 ? products.Length -1 : 0].ProductID, Quantity = 100, UnitPrice = 3}, 
+				new Order_Detail {Discount = 0, ProductID = products[products.Length -2 >= 0 ? products.Length -2 : 0].ProductID, Quantity = 200, UnitPrice = 2}, 
+				new Order_Detail {Discount = 0, ProductID = products[products.Length -3 >= 0 ? products.Length -3 : 0].ProductID, Quantity = 300, UnitPrice = 1} 
 			};
 
 			Order updatedOrder;
@@ -143,6 +144,8 @@ namespace TestProject.OrderServiceTests
 			}
 		}
 
-		public void SendInformationMessage(string message){}
+		public void SendOrderNotification(OrderNotification notification) {}
+
+		public void SendServiceData(SubscriptionServiceData data) {}
 	}
 }

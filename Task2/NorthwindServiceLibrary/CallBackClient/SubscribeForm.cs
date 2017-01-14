@@ -7,7 +7,7 @@ namespace CallBackClient
 {
 	public partial class SubscribeForm : Form, IOrderServiceCallback
 	{
-		private OrderServiceClient _service;
+		private readonly OrderServiceClient _service;
 		public SubscribeForm ()
 		{
 			InitializeComponent();
@@ -26,11 +26,6 @@ namespace CallBackClient
 			}
 		}
 
-		public void SendInformationMessage(string message)
-		{
-			tbMessages.AppendText(message + Environment.NewLine);
-		}
-
 		private void btnUnSubscribe_Click (object sender, EventArgs e)
 		{
 			try
@@ -41,6 +36,16 @@ namespace CallBackClient
 			{
 				MessageBox.Show(@"Ошибка взаимодействия с сервисом");
 			}
+		}
+
+		public void SendOrderNotification(OrderNotification notification)
+		{
+			tbMessages.AppendText($"New status for order №{notification.OrderId} is {notification.NewStatus}" + Environment.NewLine);
+		}
+
+		public void SendServiceData(SubscriptionServiceData data)
+		{
+			tbMessages.AppendText($"Current request result: {data.CurrentOperationResult}; Subscribed: {data.IsSubscribed}" + Environment.NewLine);
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace NorthwindModel.Extensions
 
 			categories.ToList().ForEach(category =>
 			{
-				result.Add(new BasicCategory() {CategoryID = category.CategoryID, CategoryName = category.CategoryName});
+				result.Add(new BasicCategory {CategoryID = category.CategoryID, CategoryName = category.CategoryName});
 			});
 
 			return result;

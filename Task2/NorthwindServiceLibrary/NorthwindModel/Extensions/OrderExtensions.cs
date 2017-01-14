@@ -13,7 +13,7 @@ namespace NorthwindModel.Extensions
 
 			Parallel.ForEach(orders, order =>
 			{
-				result.Add(new BasicOrder() {OrderID = order.OrderID, OrderDate = order.OrderDate, ShipAddress = order.ShipAddress, ShipCity = order.ShipCity, ShippedDate = order.ShippedDate, ShipRegion = order.ShipRegion});
+				result.Add(new BasicOrder {OrderID = order.OrderID, OrderDate = order.OrderDate, ShipAddress = order.ShipAddress, ShipCity = order.ShipCity, ShippedDate = order.ShippedDate, ShipRegion = order.ShipRegion});
 			});
 
 			return result;

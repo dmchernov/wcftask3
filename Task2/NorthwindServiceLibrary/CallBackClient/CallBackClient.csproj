@@ -88,28 +88,6 @@
     <None Include="Service References\OrderService\CallBackClient.OrderService.Order.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\OrderService\NorthwindModel.Enums.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\OrderService\NorthwindModel.Models.CustomModels.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\OrderService\NorthwindModel.Models.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\OrderService\NorthwindServiceLibrary.Faults.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\OrderService\service.wsdl" />
-    <None Include="Service References\OrderService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\OrderService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\OrderService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -127,10 +105,35 @@
     <None Include="Service References\OrderService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\OrderService\orders.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrderService\orders1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrderService\orders2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrderService\orders3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrderService\orders4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrderService\orders5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrderService\orders6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\OrderService\OrderService.wsdl" />
     <None Include="Service References\OrderService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\OrderService\orders.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

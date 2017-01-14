@@ -34,6 +34,14 @@ namespace NorthwindServiceFactories
 
 			serviceMetadataBehavior.HttpGetEnabled = true;
 
+			/*var debug = host.Description.Behaviors.Find<ServiceDebugBehavior>();
+			if (debug == null)
+			{
+				debug = new ServiceDebugBehavior();
+				host.Description.Behaviors.Add(debug);
+			}
+			debug.IncludeExceptionDetailInFaults = true;*/
+
 			return host;
 		}
 	}

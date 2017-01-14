@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.ServiceModel;
+using System.Threading;
+using System.Threading.Tasks;
 using NorthwindModel;
 using NorthwindModel.Enums;
 using NorthwindModel.Extensions;
 using NorthwindModel.Models;
 using NorthwindModel.Models.CustomModels;
 using NorthwindServiceLibrary.Contracts;
-using NorthwindServiceLibrary.Faults;
+using NorthwindServiceLibrary.Faults.OrderFaults;
+using NorthwindServiceLibrary.Subscription;
 
 namespace NorthwindServiceLibrary.Services
 {
@@ -36,7 +39,7 @@ namespace NorthwindServiceLibrary.Services
 				db.Configuration.LazyLoadingEnabled = false;
 				var order = db.Orders.FirstOrDefault(o => o.OrderID == orderId);
 				if (order == null)
-					throw new FaultException<OrderFault>(new OrderFault() {Message = $"Заказ с указанным номером не найден.", OrderId = orderId});
+					throw new FaultException<OrderNotFound>(new OrderNotFound {OrderId = orderId});
 
 				var context = (db as IObjectContextAdapter).ObjectContext;
 				context.LoadProperty(order, p => p.Order_Details);
@@ -66,7 +69,7 @@ namespace NorthwindServiceLibrary.Services
 		public Order SendOrderToProcess(int orderId, DateTime orderDate)
 		{
 			if (orderDate < DateTime.Today)
-				throw new FaultException<OrderFault>(new OrderFault() { Message = "Невозможно отправить заказ задним числом.", OrderId = orderId});
+				throw new FaultException<InvalidOrderDate>(new InvalidOrderDate {OrderId = orderId});
 
 			using (var db = new Northwind())
 			{
@@ -74,17 +77,16 @@ namespace NorthwindServiceLibrary.Services
 				
 				var order = db.Orders.First(o => o.OrderID == orderId);
 				if (order.Status != OrderStatus.New)
-					throw new FaultException<OrderFault>(new OrderFault()
+					throw new FaultException<OrderNotInRequiredStatuses>(new OrderNotInRequiredStatuses
 					{
-						Message = "Заказ уже находится в обработке или был отправлен покупателю.",
 						OrderId = orderId,
-						Status = order.Status
+						RequiredStatuses = new [] {OrderStatus.New}
 					});
 
 				order.OrderDate = orderDate;
 				db.SaveChanges();
 
-				SendMessage($"Заказ №{orderId} принят в обработку.");
+				SendMessage(new OrderNotification {NewStatus = OrderStatus.InProgress, OrderId = order.OrderID});
 
 				return GetOrderEx(order.OrderID);
 			}
@@ -97,16 +99,16 @@ namespace NorthwindServiceLibrary.Services
 				db.Configuration.ProxyCreationEnabled = false;
 				var order = db.Orders.First(o => o.OrderID == orderId);
 				if (order.Status != OrderStatus.InProgress)
-					throw new FaultException<OrderFault>(new OrderFault()
+					throw new FaultException<OrderNotInRequiredStatuses>(new OrderNotInRequiredStatuses
 					{
-						Message = "Невозможно отправить заказ, не находящийся в обработке.",
-						OrderId = orderId
+						OrderId = orderId,
+						RequiredStatuses = new [] {OrderStatus.InProgress}
 					});
 
 				order.ShippedDate = shippedDate;
 				db.SaveChanges();
 
-				SendMessage($"Заказ №{orderId} отправлен покупателю.");
+				SendMessage(new OrderNotification { NewStatus = OrderStatus.Complete, OrderId = order.OrderID });
 
 				return GetOrderEx(order.OrderID);
 			}
@@ -120,10 +122,10 @@ namespace NorthwindServiceLibrary.Services
 
 				var oldOrder = db.Orders.FirstOrDefault(o => o.OrderID == orderForUpdate.OrderID);
 				if (oldOrder == null)
-					throw new FaultException<OrderFault>(new OrderFault() {Message = "Заказ для обновления не найден.", OrderId = orderForUpdate.OrderID});
+					throw new FaultException<OrderNotFound>(new OrderNotFound {OrderId = orderForUpdate.OrderID});
 
 				if (oldOrder.Status != OrderStatus.New)
-					throw new FaultException<OrderFault>(new OrderFault() {Message = "Нельзя изменить отправленный или находящийся в обработке заказ.", OrderId = orderForUpdate.OrderID, Status = oldOrder.Status});
+					throw new FaultException<OrderNotInRequiredStatuses>(new OrderNotInRequiredStatuses {OrderId = orderForUpdate.OrderID, RequiredStatuses = new [] { OrderStatus.New }});
 
 				oldOrder.Customer = db.Customers.Find(orderForUpdate.Customer?.CustomerID) ?? orderForUpdate.Customer;
 				oldOrder.Employee = db.Employees.Find(orderForUpdate.Employee?.EmployeeID) ?? orderForUpdate.Employee;
@@ -148,10 +150,10 @@ namespace NorthwindServiceLibrary.Services
 
 				var orderForDelete = db.Orders.FirstOrDefault(o => o.OrderID == orderId);
 				if (orderForDelete == null)
-					throw new FaultException<OrderFault>(new OrderFault() {Message = "Заказ с указанным номером не зарегистрирован.", OrderId = orderId});
+					throw new FaultException<OrderNotFound>(new OrderNotFound {OrderId = orderId});
 
 				if (orderForDelete.Status == OrderStatus.Complete)
-					throw new FaultException<OrderFault>(new OrderFault() {Message = "Невозможно удалить отправленный заказ.", Status = orderForDelete.Status, OrderId = orderForDelete.OrderID});
+					throw new FaultException<OrderNotInRequiredStatuses>(new OrderNotInRequiredStatuses {RequiredStatuses= new []{OrderStatus.New, OrderStatus.InProgress}, OrderId = orderForDelete.OrderID});
 
 				var detailsForDelete = db.Order_Details.Where(od => od.OrderID == orderId);
 				db.Order_Details.RemoveRange(detailsForDelete);
@@ -160,39 +162,54 @@ namespace NorthwindServiceLibrary.Services
 			}
 		}
 
-		static List<IOrderSubscription> callBacks = new List<IOrderSubscription>();
+		static List<IOrderSubscription> _callBacks = new List<IOrderSubscription>();
 
 		public void Subscribe()
 		{
 			var callback = OperationContext.Current.GetCallbackChannel<IOrderSubscription>();
-			if (!callBacks.Contains(callback))
+			if (!_callBacks.Contains(callback))
 			{
-				callBacks.Add(callback);
-				callback.SendInformationMessage("Вы успешно подписались на уведомления.");
+				_callBacks.Add(callback);
+				callback.SendServiceData(new SubscriptionServiceData {IsSubscribed = true, CurrentOperationResult = true});
 			}
 			else
-				callback.SendInformationMessage("Вы уже подписаны.");
+				callback.SendServiceData(new SubscriptionServiceData { IsSubscribed = true, CurrentOperationResult = false });
 		}
 
 		public void UnSubscribe()
 		{
 			var callback = OperationContext.Current.GetCallbackChannel<IOrderSubscription>();
-			if (callBacks.Contains(callback))
+			if (_callBacks.Contains(callback))
 			{
-				callBacks.Remove(callback);
-				callback.SendInformationMessage("Вы успешно отписались от получения уведомлений.");
+				_callBacks.Remove(callback);
+				callback.SendServiceData(new SubscriptionServiceData { IsSubscribed = false, CurrentOperationResult = true });
 			}
 			else
-				callback.SendInformationMessage("Невозможно отписаться, т.к. Вы не подписаны.");
+				callback.SendServiceData(new SubscriptionServiceData { IsSubscribed = false, CurrentOperationResult = false });
 		}
 
-		private void SendMessage(string message)
+		private async void SendMessage(OrderNotification notification)
 		{
-			callBacks.RemoveAll(c => ((ICommunicationObject)c).State != CommunicationState.Opened);
-			foreach (var orderSubscription in callBacks)
+			await Task.Run(() =>
 			{
-				orderSubscription.SendInformationMessage(message);
-			}
+				_callBacks.RemoveAll(c => ((ICommunicationObject) c).State != CommunicationState.Opened);
+
+				List<IOrderSubscription> toRemove = new List<IOrderSubscription>();
+
+				Parallel.ForEach(_callBacks, orderSubscription =>
+				{
+					try
+					{
+						orderSubscription.SendOrderNotification(notification);
+					}
+					catch
+					{
+						toRemove.Add(orderSubscription);
+					}
+				});
+
+				_callBacks.RemoveAll(os => toRemove.Contains(os));
+			});
 		}
 	}
 }

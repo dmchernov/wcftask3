@@ -891,24 +891,19 @@ namespace TestProject.OrderService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="OrderFault", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderFault", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+        "s")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(TestProject.OrderService.OrderNotInRequiredStatuses))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(TestProject.OrderService.InvalidOrderDate))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(TestProject.OrderService.OrderNotFound))]
     public partial class OrderFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Exception InnerExceptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int OrderIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private TestProject.OrderService.OrderStatus StatusField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -921,27 +916,102 @@ namespace TestProject.OrderService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Exception InnerException {
+        public int OrderId {
             get {
-                return this.InnerExceptionField;
+                return this.OrderIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.InnerExceptionField, value) != true)) {
-                    this.InnerExceptionField = value;
-                    this.RaisePropertyChanged("InnerException");
+                if ((this.OrderIdField.Equals(value) != true)) {
+                    this.OrderIdField = value;
+                    this.RaisePropertyChanged("OrderId");
                 }
             }
         }
         
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderNotInRequiredStatuses", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+        "s")]
+    [System.SerializableAttribute()]
+    public partial class OrderNotInRequiredStatuses : TestProject.OrderService.OrderFault {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestProject.OrderService.OrderStatus[] RequiredStatusesField;
+        
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Message {
+        public TestProject.OrderService.OrderStatus[] RequiredStatuses {
             get {
-                return this.MessageField;
+                return this.RequiredStatusesField;
             }
             set {
-                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
-                    this.MessageField = value;
-                    this.RaisePropertyChanged("Message");
+                if ((object.ReferenceEquals(this.RequiredStatusesField, value) != true)) {
+                    this.RequiredStatusesField = value;
+                    this.RaisePropertyChanged("RequiredStatuses");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InvalidOrderDate", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+        "s")]
+    [System.SerializableAttribute()]
+    public partial class InvalidOrderDate : TestProject.OrderService.OrderFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderNotFound", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+        "s")]
+    [System.SerializableAttribute()]
+    public partial class OrderNotFound : TestProject.OrderService.OrderFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="OrderNotification", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Subscription")]
+    [System.SerializableAttribute()]
+    public partial class OrderNotification : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private TestProject.OrderService.OrderStatus NewStatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int OrderIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public TestProject.OrderService.OrderStatus NewStatus {
+            get {
+                return this.NewStatusField;
+            }
+            set {
+                if ((this.NewStatusField.Equals(value) != true)) {
+                    this.NewStatusField = value;
+                    this.RaisePropertyChanged("NewStatus");
                 }
             }
         }
@@ -959,15 +1029,63 @@ namespace TestProject.OrderService {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public TestProject.OrderService.OrderStatus Status {
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SubscriptionServiceData", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Subscription")]
+    [System.SerializableAttribute()]
+    public partial class SubscriptionServiceData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool CurrentOperationResultField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsSubscribedField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
-                return this.StatusField;
+                return this.extensionDataField;
             }
             set {
-                if ((this.StatusField.Equals(value) != true)) {
-                    this.StatusField = value;
-                    this.RaisePropertyChanged("Status");
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool CurrentOperationResult {
+            get {
+                return this.CurrentOperationResultField;
+            }
+            set {
+                if ((this.CurrentOperationResultField.Equals(value) != true)) {
+                    this.CurrentOperationResultField = value;
+                    this.RaisePropertyChanged("CurrentOperationResult");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsSubscribed {
+            get {
+                return this.IsSubscribedField;
+            }
+            set {
+                if ((this.IsSubscribedField.Equals(value) != true)) {
+                    this.IsSubscribedField = value;
+                    this.RaisePropertyChanged("IsSubscribed");
                 }
             }
         }
@@ -993,7 +1111,8 @@ namespace TestProject.OrderService {
         System.Threading.Tasks.Task<TestProject.OrderService.BasicOrder[]> GetOrdersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/GetOrderEx", ReplyAction="http://tempuri.org/IOrderService/GetOrderExResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderFault), Action="http://tempuri.org/IOrderService/GetOrderExOrderFaultFault", Name="OrderFault", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderNotFound), Action="http://tempuri.org/IOrderService/GetOrderExOrderNotFoundFault", Name="OrderNotFound", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
         TestProject.OrderService.Order GetOrderEx(int orderId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/GetOrderEx", ReplyAction="http://tempuri.org/IOrderService/GetOrderExResponse")]
@@ -1006,28 +1125,44 @@ namespace TestProject.OrderService {
         System.Threading.Tasks.Task<TestProject.OrderService.Order> AddAsync(TestProject.OrderService.Order newOrder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/SendOrderToProcess", ReplyAction="http://tempuri.org/IOrderService/SendOrderToProcessResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderFault), Action="http://tempuri.org/IOrderService/SendOrderToProcessOrderFaultFault", Name="OrderFault", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderNotFound), Action="http://tempuri.org/IOrderService/SendOrderToProcessOrderNotFoundFault", Name="OrderNotFound", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderNotInRequiredStatuses), Action="http://tempuri.org/IOrderService/SendOrderToProcessOrderNotInRequiredStatusesFaul" +
+            "t", Name="OrderNotInRequiredStatuses", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.InvalidOrderDate), Action="http://tempuri.org/IOrderService/SendOrderToProcessInvalidOrderDateFault", Name="InvalidOrderDate", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
         TestProject.OrderService.Order SendOrderToProcess(int orderId, System.DateTime orderDate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/SendOrderToProcess", ReplyAction="http://tempuri.org/IOrderService/SendOrderToProcessResponse")]
         System.Threading.Tasks.Task<TestProject.OrderService.Order> SendOrderToProcessAsync(int orderId, System.DateTime orderDate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/SendOrderToCustomer", ReplyAction="http://tempuri.org/IOrderService/SendOrderToCustomerResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderFault), Action="http://tempuri.org/IOrderService/SendOrderToCustomerOrderFaultFault", Name="OrderFault", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderNotFound), Action="http://tempuri.org/IOrderService/SendOrderToCustomerOrderNotFoundFault", Name="OrderNotFound", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderNotInRequiredStatuses), Action="http://tempuri.org/IOrderService/SendOrderToCustomerOrderNotInRequiredStatusesFau" +
+            "lt", Name="OrderNotInRequiredStatuses", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
         TestProject.OrderService.Order SendOrderToCustomer(int orderId, System.DateTime shippedDate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/SendOrderToCustomer", ReplyAction="http://tempuri.org/IOrderService/SendOrderToCustomerResponse")]
         System.Threading.Tasks.Task<TestProject.OrderService.Order> SendOrderToCustomerAsync(int orderId, System.DateTime shippedDate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/UpdateOrder", ReplyAction="http://tempuri.org/IOrderService/UpdateOrderResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderFault), Action="http://tempuri.org/IOrderService/UpdateOrderOrderFaultFault", Name="OrderFault", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderNotFound), Action="http://tempuri.org/IOrderService/UpdateOrderOrderNotFoundFault", Name="OrderNotFound", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderNotInRequiredStatuses), Action="http://tempuri.org/IOrderService/UpdateOrderOrderNotInRequiredStatusesFault", Name="OrderNotInRequiredStatuses", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
         TestProject.OrderService.Order UpdateOrder(TestProject.OrderService.Order orderForUpdate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/UpdateOrder", ReplyAction="http://tempuri.org/IOrderService/UpdateOrderResponse")]
         System.Threading.Tasks.Task<TestProject.OrderService.Order> UpdateOrderAsync(TestProject.OrderService.Order orderForUpdate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/DeleteOrder", ReplyAction="http://tempuri.org/IOrderService/DeleteOrderResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderFault), Action="http://tempuri.org/IOrderService/DeleteOrderOrderFaultFault", Name="OrderFault", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderNotFound), Action="http://tempuri.org/IOrderService/DeleteOrderOrderNotFoundFault", Name="OrderNotFound", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
+        [System.ServiceModel.FaultContractAttribute(typeof(TestProject.OrderService.OrderNotInRequiredStatuses), Action="http://tempuri.org/IOrderService/DeleteOrderOrderNotInRequiredStatusesFault", Name="OrderNotInRequiredStatuses", Namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Faults.OrderFault" +
+            "s")]
         void DeleteOrder(int orderId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IOrderService/DeleteOrder", ReplyAction="http://tempuri.org/IOrderService/DeleteOrderResponse")]
@@ -1049,8 +1184,11 @@ namespace TestProject.OrderService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IOrderServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IOrderService/SendInformationMessage")]
-        void SendInformationMessage(string message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IOrderService/SendOrderNotification")]
+        void SendOrderNotification(TestProject.OrderService.OrderNotification notification);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IOrderService/SendServiceData")]
+        void SendServiceData(TestProject.OrderService.SubscriptionServiceData data);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

@@ -58,14 +58,19 @@
   <ItemGroup>
     <Compile Include="Contracts\ICategoryService.cs" />
     <Compile Include="Contracts\IOrderService.cs" />
-    <Compile Include="Contracts\IOrderSubscription.cs" />
     <Compile Include="Contracts\IProductService.cs" />
-    <Compile Include="Faults\OrderFault.cs" />
+    <Compile Include="Faults\CategoryFaults\CategoryNotFound.cs" />
+    <Compile Include="Faults\OrderFaults\InvalidOrderDate.cs" />
+    <Compile Include="Faults\OrderFaults\OrderFault.cs" />
+    <Compile Include="Faults\OrderFaults\OrderNotFound.cs" />
+    <Compile Include="Faults\OrderFaults\OrderNotInRequiredStatuses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Faults\CategoryFault.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Subscription\IOrderSubscription.cs" />
+    <Compile Include="Subscription\OrderNotification.cs" />
+    <Compile Include="Subscription\SubscriptionServiceData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.ServiceModel;
 using NUnit.Framework;
 using TestProject.Common;
@@ -11,8 +12,11 @@ namespace TestProject.OrderServiceTests
 		[Test]
 		public void GetOrderExFaultTest()
 		{
-			var ex = Assert.Catch<FaultException<OrderFault>>(() => { new OrderServiceClient(new InstanceContext(this)).GetOrderEx(-1); });
-			Assert.AreEqual(ex.Detail.Message, "Заказ с указанным номером не найден.");
+			using (var service = new OrderServiceClient(new InstanceContext(this)))
+			{
+				var ex = Assert.Catch<FaultException<OrderNotFound>>(() => { service.GetOrderEx(-1); });
+				Assert.AreEqual(ex.Detail.OrderId, -1);
+			}
 		}
 
 		[Test]
@@ -24,11 +28,11 @@ namespace TestProject.OrderServiceTests
 			{
 				var processedOrder = service.SendOrderToProcess(order.OrderID, DateTime.Now);
 
-				var ex = Assert.Catch<FaultException<OrderFault>>(() => { service.SendOrderToProcess(processedOrder.OrderID, DateTime.Now); });
-				Assert.AreEqual(ex.Detail.Message, "Заказ уже находится в обработке или был отправлен покупателю.");
+				var invalidStatusEx = Assert.Catch<FaultException<OrderNotInRequiredStatuses>>(() => { service.SendOrderToProcess(processedOrder.OrderID, DateTime.Now); });
+				Assert.True(invalidStatusEx.Detail.RequiredStatuses.Contains(OrderStatus.New) && invalidStatusEx.Detail.RequiredStatuses.Length == 1);
 
-				ex = Assert.Catch<FaultException<OrderFault>>(() => { service.SendOrderToProcess(processedOrder.OrderID, DateTime.Now.AddDays(-7)); });
-				Assert.AreEqual(ex.Detail.Message, "Невозможно отправить заказ задним числом.");
+				var invalidDateEx = Assert.Catch<FaultException<InvalidOrderDate>>(() => { service.SendOrderToProcess(processedOrder.OrderID, DateTime.Now.AddDays(-7)); });
+				Assert.AreEqual(invalidDateEx.Detail.OrderId, processedOrder.OrderID);
 			}
 		}
 
@@ -42,8 +46,8 @@ namespace TestProject.OrderServiceTests
 				var processedOrder = service.SendOrderToProcess(order.OrderID, DateTime.Now);
 				var shippedOrder = service.SendOrderToCustomer(processedOrder.OrderID, DateTime.Now.AddDays(7));
 
-				var ex = Assert.Catch<FaultException<OrderFault>>(() => { service.SendOrderToCustomer(shippedOrder.OrderID, DateTime.Now.AddDays(10)); });
-				Assert.AreEqual(ex.Detail.Message, "Невозможно отправить заказ, не находящийся в обработке.");
+				var ex = Assert.Catch<FaultException<OrderNotInRequiredStatuses>>(() => { service.SendOrderToCustomer(shippedOrder.OrderID, DateTime.Now.AddDays(10)); });
+				Assert.True(ex.Detail.RequiredStatuses.Contains(OrderStatus.InProgress) && ex.Detail.RequiredStatuses.Length == 1);
 			}
 		}
 
@@ -57,14 +61,12 @@ namespace TestProject.OrderServiceTests
 				var oldId = order.OrderID;
 				order.OrderID = -100;
 
-				var ex = Assert.Catch<FaultException<OrderFault>>(() => { service.UpdateOrder(order); });
-				Assert.AreEqual(ex.Detail.Message, "Заказ для обновления не найден.");
+				Assert.Catch<FaultException<OrderNotFound>>(() => { service.UpdateOrder(order); });
 
 				order.OrderID = oldId;
 				order = service.SendOrderToProcess(order.OrderID, DateTime.Now);
 
-				ex = Assert.Catch<FaultException<OrderFault>>(() => { service.UpdateOrder(order); });
-				Assert.AreEqual(ex.Detail.Message, "Нельзя изменить отправленный или находящийся в обработке заказ.");
+				Assert.Catch<FaultException<OrderNotInRequiredStatuses>>(() => { service.UpdateOrder(order); });
 			}
 		}
 
@@ -75,20 +77,17 @@ namespace TestProject.OrderServiceTests
 
 			using (var service = new OrderServiceClient(new InstanceContext(this)))
 			{
-				var ex = Assert.Catch<FaultException<OrderFault>>(() => { service.DeleteOrder(-1); });
-				Assert.AreEqual(ex.Detail.Message, "Заказ с указанным номером не зарегистрирован.");
+				Assert.Catch<FaultException<OrderNotFound>>(() => { service.DeleteOrder(-1); });
 
 				order = service.SendOrderToProcess(order.OrderID, DateTime.Now);
 				order = service.SendOrderToCustomer(order.OrderID, DateTime.Now);
 
-				ex = Assert.Catch<FaultException<OrderFault>>(() => { service.DeleteOrder(order.OrderID); });
-				Assert.AreEqual(ex.Detail.Message, "Невозможно удалить отправленный заказ.");
+				var ex = Assert.Catch<FaultException<OrderNotInRequiredStatuses>>(() => { service.DeleteOrder(order.OrderID); });
+				Assert.True(ex.Detail.RequiredStatuses.Length == 2 && !ex.Detail.RequiredStatuses.Contains(OrderStatus.Complete));
 			}
 		}
 
-		public void SendInformationMessage(string message)
-		{
-			Console.WriteLine(message);
-		}
+		public void SendOrderNotification (OrderNotification notification) {}
+		public void SendServiceData (SubscriptionServiceData data) {}
 	}
 }

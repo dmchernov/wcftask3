@@ -6,7 +6,7 @@ using NorthwindModel;
 using NorthwindModel.Extensions;
 using NorthwindModel.Models.CustomModels;
 using NorthwindServiceLibrary.Contracts;
-using NorthwindServiceLibrary.Faults;
+using NorthwindServiceLibrary.Faults.CategoryFaults;
 
 namespace NorthwindServiceLibrary.Services
 {
@@ -19,7 +19,7 @@ namespace NorthwindServiceLibrary.Services
 				var id = image.CategoryId;
 				var cat = db.Categories.FirstOrDefault(c => c.CategoryID == id);
 				if (cat == null)
-					throw new FaultException<CategoryFault>(new CategoryFault() {CategoryId = id, Message = "Категория с заданным Id не найдена"});
+					throw new FaultException<CategoryNotFound>(new CategoryNotFound {CategoryId = id});
 				
 				var imageStream = new MemoryStream(cat.Picture);
 				return new CategoryImage
@@ -55,7 +55,7 @@ namespace NorthwindServiceLibrary.Services
 			{
 				var cat = db.Categories.FirstOrDefault(c => c.CategoryID == image.CategoryId);
 				if (cat == null)
-					throw new FaultException<CategoryFault>(new CategoryFault {CategoryId = image.CategoryId, Message = "Категория с заданным Id не найдена" });
+					throw new FaultException<CategoryNotFound>(new CategoryNotFound {CategoryId = image.CategoryId});
 
 				cat.Picture = imageCat;
 

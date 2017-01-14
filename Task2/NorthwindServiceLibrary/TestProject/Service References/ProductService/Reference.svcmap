@@ -19,14 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost/ProductService" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:809/winsvc/northwind/products" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ProductService.xsd" MetadataType="Schema" ID="84132b25-20ee-407d-9803-86e768f14f57" SourceId="1" SourceUrl="http://localhost/ProductService?xsd=xsd0" />
-    <MetadataFile FileName="ProductService.wsdl" MetadataType="Wsdl" ID="090f8e9a-11e8-45b0-a6fa-e09a5284487e" SourceId="1" SourceUrl="http://localhost/ProductService?wsdl" />
-    <MetadataFile FileName="ProductService1.xsd" MetadataType="Schema" ID="06d031c7-ba99-4e61-9585-cb4a11dc3c9e" SourceId="1" SourceUrl="http://localhost/ProductService?xsd=xsd1" />
-    <MetadataFile FileName="ProductService2.xsd" MetadataType="Schema" ID="0d69fe2c-1dec-4003-9779-5408f61b47d3" SourceId="1" SourceUrl="http://localhost/ProductService?xsd=xsd2" />
-    <MetadataFile FileName="ProductService.disco" MetadataType="Disco" ID="c8f9d25d-9304-4945-9658-e2d7528b9483" SourceId="1" SourceUrl="http://localhost/ProductService?disco" />
+    <MetadataFile FileName="ProductService1.wsdl" MetadataType="Wsdl" ID="7d2914d2-1b2d-44ba-bc55-573d51f69b82" SourceId="1" SourceUrl="http://localhost:809/winsvc/northwind/products?wsdl" />
+    <MetadataFile FileName="products.xsd" MetadataType="Schema" ID="9ddb52e4-76c9-483c-bc3e-25641a409300" SourceId="1" SourceUrl="http://localhost:809/winsvc/northwind/products?xsd=xsd0" />
+    <MetadataFile FileName="products.disco" MetadataType="Disco" ID="f83a1a38-9086-49d9-9c3c-4707b7ec6d3e" SourceId="1" SourceUrl="http://localhost:809/winsvc/northwind/products?disco" />
+    <MetadataFile FileName="products1.xsd" MetadataType="Schema" ID="f9b40d60-184b-45f3-b060-02e4d0fff924" SourceId="1" SourceUrl="http://localhost:809/winsvc/northwind/products?xsd=xsd3" />
+    <MetadataFile FileName="products2.xsd" MetadataType="Schema" ID="7ba7af73-39f3-4e2c-a768-66724273a990" SourceId="1" SourceUrl="http://localhost:809/winsvc/northwind/products?xsd=xsd2" />
+    <MetadataFile FileName="products3.xsd" MetadataType="Schema" ID="c5287351-c097-4dda-8d25-61f226267574" SourceId="1" SourceUrl="http://localhost:809/winsvc/northwind/products?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

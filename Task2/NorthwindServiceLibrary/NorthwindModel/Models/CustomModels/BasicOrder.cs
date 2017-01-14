@@ -8,8 +8,6 @@ namespace NorthwindModel.Models.CustomModels
 	[KnownType(typeof(Order))]
 	public class BasicOrder
 	{
-		public BasicOrder () { }
-
 		[DataMember]
 		[Key]
 		public int OrderID { get; set; }

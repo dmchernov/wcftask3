@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/NorthwindModel.Models.CustomModels" />
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/NorthwindModel.Models" />
+  <xs:import schemaLocation="http://localhost:809/winsvc/northwind/orders?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/NorthwindModel.Models.CustomModels" />
+  <xs:import schemaLocation="http://localhost:809/winsvc/northwind/orders?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/NorthwindModel.Models" />
+  <xs:import schemaLocation="http://localhost:809/winsvc/northwind/orders?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Subscription" />
   <xs:element name="GetOrders">
     <xs:complexType>
       <xs:sequence />
@@ -108,10 +109,17 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="SendInformationMessage">
+  <xs:element name="SendOrderNotification">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Subscription" minOccurs="0" name="notification" nillable="true" type="q9:OrderNotification" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendServiceData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/NorthwindServiceLibrary.Subscription" minOccurs="0" name="data" nillable="true" type="q10:SubscriptionServiceData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -2,7 +2,7 @@
 using System.IO;
 using System.ServiceModel;
 using NorthwindModel.Models.CustomModels;
-using NorthwindServiceLibrary.Faults;
+using NorthwindServiceLibrary.Faults.CategoryFaults;
 
 namespace NorthwindServiceLibrary.Contracts
 {
@@ -10,11 +10,11 @@ namespace NorthwindServiceLibrary.Contracts
 	public interface ICategoryService
 	{
 		[OperationContract]
-		[FaultContract(typeof(CategoryFault))]
+		[FaultContract(typeof(CategoryNotFound))]
 		CategoryImage GetCategoryImage (CategoryImage image);
 
 		[OperationContract]
-		[FaultContract(typeof(CategoryFault))]
+		[FaultContract(typeof(CategoryNotFound))]
 		void SetCategoryImage(CategoryImage image);
 
 		[OperationContract]
